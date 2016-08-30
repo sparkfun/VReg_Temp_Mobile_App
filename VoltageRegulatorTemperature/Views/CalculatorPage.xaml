@@ -67,10 +67,10 @@
 			HorizontalOptions="StartAndExpand"
 			Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" />
 
-		<Slider Value="{Binding VoltageIn, Mode=TwoWay}" Maximum="48"
+		<Slider Value="{Binding VoltageIn, Mode=TwoWay}" Minimum="{Binding MinVoltageIn}" Maximum="48"
 			x:Name="VoltageInSlider"
 			Grid.Row="5" Grid.Column="0" />
-		<Stepper Value="{Binding VoltageIn}" Maximum="48" Increment="0.01"
+		<Stepper Value="{Binding VoltageIn}" Minimum="{Binding MinVoltageIn}" Maximum="48" Increment="0.01"
 			Grid.Row="5" Grid.Column="1" />
 
 		<!-- Output Section -->
@@ -80,10 +80,10 @@
 			HorizontalOptions="StartAndExpand"
 			Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" />
 
-		<Slider Value="{Binding VoltageOut}" Maximum="24"
+		<Slider Value="{Binding VoltageOut}" Minimum="{Binding MinVoltageOut}" Maximum="24"
 			x:Name="VoltageOutSlider"
 			Grid.Row="7" Grid.Column="0" />
-		<Stepper Value="{Binding VoltageOut}" Maximum="24" Increment="0.01"
+		<Stepper Value="{Binding VoltageOut}" Minimum="{Binding MinVoltageOut}" Maximum="24" Increment="0.01"
 			x:Name="VoltageOutStepper"
 			Grid.Row="7" Grid.Column="1" />
 
@@ -91,9 +91,9 @@
 			HorizontalOptions="StartAndExpand"
 			Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
 
-		<Slider Value="{Binding CurrentDraw}" Maximum="10"
+		<Slider Value="{Binding CurrentDraw}" Minimum="{Binding MinCurrentDraw}" Maximum="10"
 			Grid.Row="9" Grid.Column="0" />
-		<Stepper Value="{Binding CurrentDraw}" Maximum="10" Increment="0.001"
+		<Stepper Value="{Binding CurrentDraw}" Minimum="{Binding MinCurrentDraw}" Maximum="10" Increment="0.001"
 			Grid.Row="9" Grid.Column="1" />	
 		</Grid>
 	</ScrollView>

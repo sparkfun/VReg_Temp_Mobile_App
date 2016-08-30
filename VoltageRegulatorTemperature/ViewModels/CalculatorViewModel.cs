@@ -1,8 +1,23 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace VoltageRegulatorTemperature.ViewModels
 {
 	public class CalculatorViewModel : Xamarin.FormsBook.Toolkit.ViewModelBase
 	{
+		//public CalculatorViewModel()
+		//{
+		//	// Load previously stored settings
+		//	var app = Application.Current as App;
+		//	this.VoltageIn = app.CalculatorViewModel.VoltageIn;
+		//	VoltageOut = app.CalculatorViewModel.VoltageOut;
+		//	CurrentDraw = app.CalculatorViewModel.CurrentDraw;
+		//	DisplayedUnits = app.CalculatorViewModel.DisplayedUnits;
+		//	ThermalResistance = app.CalculatorViewModel.ThermalResistance;
+
+		//	CalculatePowerDissipated();
+		//}
+
 		public enum Units { Fahrenheit, Celsius };
 
 		bool firstRun;
