@@ -18,16 +18,18 @@ namespace VoltageRegulatorTemperature.ViewModels
 			set { SetProperty(ref firstRun, value); }
 		}
 
+		#region User IO
 		public double VoltageIn
 		{
 			get { return voltageIn; }
-			set { SetProperty(ref voltageIn, value); }
+			// TODO: Should CalculatePowerDissipated really be called in all of these places?
+			set { CalculatePowerDissipated(); SetProperty(ref voltageIn, value); }
 		}
 
 		public double VoltageOut
 		{
 			get { return voltageOut; }
-			set { SetProperty(ref voltageOut, value); }
+			set { CalculatePowerDissipated(); SetProperty(ref voltageOut, value); }
 		}
 
 		public double PowerDissipated
@@ -51,13 +53,13 @@ namespace VoltageRegulatorTemperature.ViewModels
 		public double CurrentDraw
 		{
 			get { return currentDraw; }
-			set { SetProperty(ref currentDraw, value); }
+			set { CalculatePowerDissipated(); SetProperty(ref currentDraw, value); }
 		}
 
 		public double ThermalResistance
 		{
 			get { return thermalResistance; }
-			set { SetProperty(ref thermalResistance, value); }
+			set { CalculatePowerDissipated(); SetProperty(ref thermalResistance, value); }
 		}
 
 		public double AmbientTemp
@@ -71,7 +73,9 @@ namespace VoltageRegulatorTemperature.ViewModels
 			get { return maxJunctionTemp; }
 			set { SetProperty(ref maxJunctionTemp, value); }
 		}
+		#endregion
 
+		#region UI Settings
 		public double MinVoltageIn
 		{
 			get { return minVoltageIn; }
@@ -80,8 +84,8 @@ namespace VoltageRegulatorTemperature.ViewModels
 
 		public double MaxVoltageIn
 		{
-			get { return maxVoltageOut; }
-			set { SetProperty(ref maxVoltageOut, value); }
+			get { return maxVoltageIn; }
+			set { SetProperty(ref maxVoltageIn, value); }
 		}
 
 		public double MinVoltageOut
@@ -113,6 +117,28 @@ namespace VoltageRegulatorTemperature.ViewModels
 			get { return displayedUnits; }
 			set { SetProperty(ref displayedUnits, value); }
 		}
+		#endregion
+
+		#region Calculation Methods
+		void CalculatePowerDissipated()
+		{
+			PowerDissipated = (voltageIn - voltageOut) * currentDraw;
+			CalculateTemperatureRise(); // This always changes if dissipated power changes
+		}
+
+		void CalculateTemperatureRise()
+		{
+			if (!PowerDissipated.Equals(0))
+			{
+				TempC = ThermalResistance /* ˚C/W */ * PowerDissipated;
+				TempF = TempC * 9 / 5 + 32;
+			}
+			else
+			{
+				TempC = TempF = 0.0;
+			}
+		}
+		#endregion
 	}
 }
 

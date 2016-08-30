@@ -4,8 +4,97 @@
 		x:Class="VoltageRegulatorTemperature.Views.CalculatorPage"
 		Title="Calculate Temperature"
 		Padding="10"
-		x:Name="calculatorPage">
-	<ContentPage.Content>
-		<Label Text="Calculator goes here" />
-	</ContentPage.Content>
+		x:Name="calculatorPage"
+		BindingContext="{Binding Source={x:Static Application.Current}, Path=CalculatorViewModel}" >
+	<ScrollView Padding="5,20,5,5">
+		<Grid>
+
+		<!-- Grid Setup Section -->
+		
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*"    />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"    />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Calculated Output Section -->
+
+		<!--
+		<Label Text="{Binding RegulatorModel.ThermalResistance, StringFormat='POWER DISSIPATED: {0:F3} Ω'}"
+				HorizontalOptions="Center"
+			FontAttributes="Bold"
+			Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+		-->
+
+		<Label Text="{Binding PowerDissipated, StringFormat='POWER DISSIPATED: {0:F3} W'}"
+			HorizontalOptions="Center"
+			FontAttributes="Bold"
+			Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+
+		<Label Text="{Binding TemperatureRiseC, StringFormat='TEMP ABOVE AMBIENT: {0:F1} ˚C'}"
+			x:Name="TempRise"
+			HorizontalOptions="Center"
+			FontAttributes="Bold"
+			StyleId="CelciusLabel"
+			Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+			
+		<Label Text="{Binding TemperatureRiseF, StringFormat='TEMP ABOVE AMBIENT: {0:F1} ˚F'}"
+			HorizontalOptions="Center"
+			FontAttributes="Bold"
+			Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
+
+		<!-- Image Section -->
+
+		<Image Source="linear_model.png"
+			Grid.Row="3" Grid.ColumnSpan="2" />
+
+		<!-- Input Section -->
+
+		<Label Text="{Binding VoltageIn, StringFormat='Volatge in: {0:F2} V'}"
+			x:Name="VoltageInLabel"
+			HorizontalOptions="StartAndExpand"
+			Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" />
+
+		<Slider Value="{Binding VoltageIn, Mode=TwoWay}" Maximum="48"
+			x:Name="VoltageInSlider"
+			Grid.Row="5" Grid.Column="0" />
+		<Stepper Value="{Binding VoltageIn}" Maximum="48" Increment="0.01"
+			Grid.Row="5" Grid.Column="1" />
+
+		<!-- Output Section -->
+
+		<Label Text="{Binding VoltageOut, StringFormat='Volatge out: {0:F2} V'}"
+			x:Name="VoltageOutLabel"
+			HorizontalOptions="StartAndExpand"
+			Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" />
+
+		<Slider Value="{Binding VoltageOut}" Maximum="24"
+			x:Name="VoltageOutSlider"
+			Grid.Row="7" Grid.Column="0" />
+		<Stepper Value="{Binding VoltageOut}" Maximum="24" Increment="0.01"
+			x:Name="VoltageOutStepper"
+			Grid.Row="7" Grid.Column="1" />
+
+		<Label Text="{Binding CurrentDraw, StringFormat='Current out: {0:F3} A'}"
+			HorizontalOptions="StartAndExpand"
+			Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
+
+		<Slider Value="{Binding CurrentDraw}" Maximum="10"
+			Grid.Row="9" Grid.Column="0" />
+		<Stepper Value="{Binding CurrentDraw}" Maximum="10" Increment="0.001"
+			Grid.Row="9" Grid.Column="1" />	
+		</Grid>
+	</ScrollView>
 </ContentPage>

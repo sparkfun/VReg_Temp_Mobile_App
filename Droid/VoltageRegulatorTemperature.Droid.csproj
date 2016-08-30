@@ -86,6 +86,10 @@
       <Project>{00ED4E29-FF4F-4BFF-AFF7-32690E1165AE}</Project>
       <Name>VoltageRegulatorTemperature</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GitHub\xamarin-forms-book-samples\Libraries\Xamarin.FormsBook.Toolkit\Xamarin.FormsBook.Toolkit\Xamarin.FormsBook.Toolkit.csproj">
+      <Project>{58EEAFFF-D1BB-4375-AEFC-8270F8415DCE}</Project>
+      <Name>Xamarin.FormsBook.Toolkit</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

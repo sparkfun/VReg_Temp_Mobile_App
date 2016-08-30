@@ -6,10 +6,18 @@ namespace VoltageRegulatorTemperature
 	{
 		public App()
 		{
-			InitializeComponent();
+			// Ensure link to Toolkit library
+			new Xamarin.FormsBook.Toolkit.ObjectToIndexConverter<object>();
+
+			// Instantiate CalculatorViewModel for sharing between pages
+			CalculatorViewModel = new ViewModels.CalculatorViewModel();
+
+			//InitializeComponent();
 
 			MainPage = new VoltageRegulatorTemperature.Views.MainPage();
 		}
+
+		public ViewModels.CalculatorViewModel CalculatorViewModel { private set; get; }
 
 		protected override void OnStart()
 		{

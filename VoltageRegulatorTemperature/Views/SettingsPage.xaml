@@ -2,15 +2,66 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		x:Class="VoltageRegulatorTemperature.Views.SettingsPage"
+		xmlns:toolkit="clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
 		Title="Settings"
+		Icon="hamburger.png"
 		Padding="10"
-		x:Name="settingsPage">
+		x:Name="settingsPage"
+		BindingContext="{Binding Source={x:Static Application.Current}, Path=CalculatorViewModel}">
+	
 	<ContentPage.Padding>
 		<OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
 	</ContentPage.Padding>
+	
 	<ContentPage.Content>
-		<Frame OutlineColor="Accent">
-			<Label Text="Settings go here" />
+		<Frame OutlineColor="Accent" HasShadow="false">
+		<StackLayout VerticalOptions="FillAndExpand">
+			<Label Text="Thermal Resistance (˚C/W)" />
+			<Entry Text="{Binding ThermalResistance, StringFormat='{0:F2}', Mode=TwoWay}"
+					x:Name="resistanceEntry"
+					Keyboard="Numeric" />
+			<!-- Completed="OnEntryCompleted" -->
+			<Label Text="Temperature Units" />
+
+			<Grid>
+	 			<Grid.Resources>
+	 				<ResourceDictionary>
+	 					<Style TargetType="Label">
+	 						<Setter Property="FontSize" Value="Medium" />
+	 						<Setter Property="HorizontalTextAlignment" Value="Center" />
+	 					</Style>
+	 				</ResourceDictionary>
+	 			</Grid.Resources>
+				
+				<Label	Text="Fahrenheit (°F)" TextColor="Gray" Grid.Column="0">
+					<Label.Behaviors>
+						<toolkit:RadioBehavior x:Name="fahrenheitRadio" />
+					</Label.Behaviors>
+					<Label.Triggers>
+						<DataTrigger TargetType="Label"
+								Binding="{Binding Source={x:Reference fahrenheitRadio},
+	 							Path=IsChecked}"
+	 							Value="True">
+							<Setter Property="TextColor" Value="Green" />
+	 					</DataTrigger>
+	 				</Label.Triggers>
+	 			</Label>
+
+		 		<Label Text="Celsius (°C)" TextColor="Gray" Grid.Column="1">
+					<Label.Behaviors>
+						<toolkit:RadioBehavior x:Name="celsiusRadio" IsChecked="True" />
+					</Label.Behaviors>
+					<Label.Triggers>
+						<DataTrigger TargetType="Label"
+								Binding="{Binding Source={x:Reference celsiusRadio},
+									Path=IsChecked}"
+								Value="True">
+							<Setter Property="TextColor" Value="Green" />
+	 					</DataTrigger>
+	 				</Label.Triggers>
+				</Label>
+			</Grid>
+		</StackLayout>
 		</Frame>
 	</ContentPage.Content>
 </ContentPage>

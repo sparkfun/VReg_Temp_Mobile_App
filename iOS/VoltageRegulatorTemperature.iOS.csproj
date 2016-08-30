@@ -111,6 +111,10 @@
       <Project>{00ED4E29-FF4F-4BFF-AFF7-32690E1165AE}</Project>
       <Name>VoltageRegulatorTemperature</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GitHub\xamarin-forms-book-samples\Libraries\Xamarin.FormsBook.Toolkit\Xamarin.FormsBook.Toolkit\Xamarin.FormsBook.Toolkit.csproj">
+      <Project>{58EEAFFF-D1BB-4375-AEFC-8270F8415DCE}</Project>
+      <Name>Xamarin.FormsBook.Toolkit</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
@@ -130,6 +134,11 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hamburger.png" />
+    <BundleResource Include="Resources\hamburger%402x.png" />
+    <BundleResource Include="Resources\linear_model.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
