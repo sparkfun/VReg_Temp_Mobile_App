@@ -1,7 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-
-namespace VoltageRegulatorTemperature.ViewModels
+﻿namespace VoltageRegulatorTemperature.ViewModels
 {
 	public class CalculatorViewModel : Xamarin.FormsBook.Toolkit.ViewModelBase
 	{
