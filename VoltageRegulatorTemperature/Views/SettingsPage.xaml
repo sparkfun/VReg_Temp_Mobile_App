@@ -12,15 +12,37 @@
 	<ContentPage.Padding>
 		<OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
 	</ContentPage.Padding>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Entry">
+				<Style.Triggers>
+					<Trigger TargetType="Entry" Property="IsFocused" Value="True">
+						<Setter Property="BackgroundColor" Value="#e6ffff" />
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	
 	<ContentPage.Content>
 		<Frame OutlineColor="Accent" HasShadow="false">
 		<StackLayout VerticalOptions="FillAndExpand">
 			<Label Text="Thermal Resistance (˚C/W)" />
-			<Entry Text="{Binding ThermalResistance, StringFormat='{0:F2}', Mode=TwoWay}"
+			<!-- <Entry Text="{Binding ThermalResistance, StringFormat='{0:F2}'}"
 					x:Name="resistanceEntry"
-					Keyboard="Numeric" />
+					Keyboard="Numeric" /> -->
+
+			<Entry Text="{Binding ThermalResistance}"
+						x:Name="resistanceEntry"
+						Keyboard="Numeric"
+						TextChanged="Entry_TextChanged">
+					<Entry.Behaviors>
+						<toolkit:NumericValidationBehavior />
+					</Entry.Behaviors>
+			</Entry>
 			<!-- Completed="OnEntryCompleted" -->
+				
 			<Label Text="Temperature Units" />
 
 			<Grid>

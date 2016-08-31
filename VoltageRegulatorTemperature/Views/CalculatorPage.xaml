@@ -43,14 +43,32 @@
 			FontAttributes="Bold"
 			Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
 
-		<Label Text="{Binding TemperatureRiseC, StringFormat='TEMP ABOVE AMBIENT: {0:F1} ˚C'}"
+		<Label x:Name="junctionTemp"
+					Text=""
+					HorizontalOptions="Center"
+					FontAttributes="Bold"
+					StyleId="junctTemp"
+					Grid.Row="1" Grid.Column="0" IsEnabled="true">
+			<Label.Triggers>
+				<DataTrigger TargetType="Label"
+						Binding="{Binding DisplayedUnits}"
+						Value="Fahrenheit">
+					<Setter Property="IsEnabled" Value="False" />
+					<Setter Property="Text" Value="Fahrenheit" />
+				</DataTrigger>
+			</Label.Triggers>
+		</Label>
+
+		<!--
+		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}"
 			x:Name="TempRise"
 			HorizontalOptions="Center"
 			FontAttributes="Bold"
 			StyleId="CelciusLabel"
-			Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+			Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="true" />
+		-->
 			
-		<Label Text="{Binding TemperatureRiseF, StringFormat='TEMP ABOVE AMBIENT: {0:F1} ˚F'}"
+		<Label Text="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}"
 			HorizontalOptions="Center"
 			FontAttributes="Bold"
 			Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />

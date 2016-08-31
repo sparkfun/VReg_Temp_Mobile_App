@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace VoltageRegulatorTemperature.Views
 {
@@ -7,6 +8,12 @@ namespace VoltageRegulatorTemperature.Views
 		public SettingsPage()
 		{
 			InitializeComponent();
+		}
+
+		// TODO: Debug method next
+		void Entry_TextChanged(object sender, TextChangedEventArgs e)
+		{			
+			Debug.WriteLine($"TextChanged: {sender.ToString()}");
 		}
 	}
 }

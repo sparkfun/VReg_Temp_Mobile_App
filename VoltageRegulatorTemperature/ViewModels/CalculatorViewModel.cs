@@ -71,7 +71,14 @@
 		public double ThermalResistance
 		{
 			get { return thermalResistance; }
-			set { CalculatePowerDissipated(); SetProperty(ref thermalResistance, value); }
+			set
+			{
+				if (SetProperty(ref thermalResistance, value))
+				{
+					CalculatePowerDissipated();
+				}
+				//SetProperty(ref thermalResistance, value);
+			}
 		}
 
 		public double AmbientTemp
@@ -142,7 +149,7 @@
 		{
 			if (!PowerDissipated.Equals(0))
 			{
-				TempC = ThermalResistance /* ˚C/W */ * PowerDissipated;
+				TempC = ThermalResistance /* ˚C/W */ * PowerDissipated + AmbientTemp;
 				TempF = TempC * 9 / 5 + 32;
 			}
 			else
