@@ -17,7 +17,7 @@
 		bool firstRun;
 
 		double voltageIn, voltageOut, powerDissipated, tempC, tempF, currentDraw, thermalResistance, ambientTemp,
-			maxJunctionTemp, minVoltageIn, maxVoltageIn, minVoltageOut, maxVoltageOut, minCurrent, maxCurrent;
+			maxJunctionTemp, minVoltageIn, maxVoltageIn, minVoltageOut, maxVoltageOut, minCurrentDraw, maxCurrentDraw;
 
 		Units displayedUnits;
 
@@ -28,17 +28,37 @@
 		}
 
 		#region User IO
+		// TODO: Add validation to all inputs... max > min, etc.
 		public double VoltageIn
 		{
 			get { return voltageIn; }
-			// TODO: Should CalculatePowerDissipated really be called in all of these places?
-			set { CalculatePowerDissipated(); SetProperty(ref voltageIn, value); }
+			set
+			{
+				if (value < VoltageOut) // Voltage in can't ever be less than voltage out
+				{
+					VoltageOut = value;
+				}
+				if (SetProperty(ref voltageIn, value))
+				{
+					CalculatePowerDissipated();
+				}
+			}
 		}
 
 		public double VoltageOut
 		{
 			get { return voltageOut; }
-			set { CalculatePowerDissipated(); SetProperty(ref voltageOut, value); }
+			set
+			{
+				if (value > VoltageIn) // Voltage in can't ever be less than voltage out
+				{
+					VoltageIn = value;
+				}
+				if (SetProperty(ref voltageOut, value))
+				{
+					CalculatePowerDissipated();
+				}
+			}
 		}
 
 		public double PowerDissipated
@@ -100,37 +120,74 @@
 		public double MinVoltageIn
 		{
 			get { return minVoltageIn; }
-			set { SetProperty(ref minVoltageIn, value); }
+			set
+			{
+				if (value < MaxVoltageIn)
+				{
+					SetProperty(ref minVoltageIn, value);
+				}
+			}
 		}
 
 		public double MaxVoltageIn
 		{
 			get { return maxVoltageIn; }
-			set { SetProperty(ref maxVoltageIn, value); }
+			set
+			{
+				if (value > MinVoltageIn)
+				{
+					SetProperty(ref maxVoltageIn, value);
+				}
+			}
 		}
 
 		public double MinVoltageOut
 		{
 			get { return minVoltageOut; }
-			set { SetProperty(ref minVoltageOut, value); }
+			set
+			{
+				if (value < MaxVoltageOut)
+				{
+					SetProperty(ref minVoltageOut, value);
+				}
+			}
 		}
 
 		public double MaxVoltageOut
 		{
 			get { return maxVoltageOut; }
-			set { SetProperty(ref maxVoltageOut, value); }
+			set
+			{
+				if (value > MinVoltageOut)
+				{
+					SetProperty(ref maxVoltageOut, value);
+				}
+			}
 		}
 
-		public double MinCurrent
+		public double MinCurrentDraw
 		{
-			get { return minCurrent; }
-			set { SetProperty(ref minCurrent, value); }
+			get { return minCurrentDraw; }
+			set
+			{
+				if (value < MaxCurrentDraw)
+				{
+					SetProperty(ref minCurrentDraw, value);
+				}
+
+			}
 		}
 
-		public double MaxCurrent
+		public double MaxCurrentDraw
 		{
-			get { return maxCurrent; }
-			set { SetProperty(ref maxCurrent, value); }
+			get { return maxCurrentDraw; }
+			set
+			{
+				if (value > MinCurrentDraw)
+				{
+					SetProperty(ref maxCurrentDraw, value);
+				}
+			}
 		}
 
 		public Units DisplayedUnits

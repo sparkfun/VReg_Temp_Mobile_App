@@ -27,15 +27,24 @@ namespace VoltageRegulatorTemperature
 			CalculatorViewModel = new ViewModels.CalculatorViewModel();
 
 			#region PersistantProperties
-			if (Properties.ContainsKey(firstRunKey))
+			// TODO: This manual save/restore is tedious, implement auto serialization
+			if (Properties.ContainsKey(firstRunKey) && Properties[firstRunKey].Equals(true))
 			{
 				CalculatorViewModel.FirstRun = (bool)Properties[firstRunKey];
 			}
 			else
 			{
 				// TODO: Do first run stuff!
-				Properties[thermalResistanceKey] = 23.0;
-				Properties[firstRunKey] = false;
+				Properties[thermalResistanceKey] =  23.0;
+				Properties[firstRunKey]          = false;
+				Properties[ambientTempKey]       =  25.0;
+				Properties[maxJunctionTempKey]   = 125.0;
+				Properties[minVoltageInKey]      =   0.0;
+				Properties[maxVoltageInKey]      =  48.0;
+				Properties[minVoltageOutKey]     =   0.0;
+				Properties[maxVoltageOutKey]     =  24.0;
+				Properties[minCurrentKey]        =   0.0;
+				Properties[maxCurrentKey]        =  10.0;
 				SavePropertiesAsync();
 			}
 
@@ -64,6 +73,46 @@ namespace VoltageRegulatorTemperature
 			//{
 			//	CalculatorViewModel.DisplayedUnits = (CalculatorViewModel.Units)Properties[displayedUnitsKey];
 			//}
+
+			if (Properties.ContainsKey(ambientTempKey))
+			{
+				CalculatorViewModel.AmbientTemp = (double)Properties[ambientTempKey];
+			}
+
+			if (Properties.ContainsKey(maxJunctionTempKey))
+			{
+				CalculatorViewModel.MaxJunctionTemp = (double)Properties[maxJunctionTempKey];
+			}
+
+			if (Properties.ContainsKey(minVoltageInKey))
+			{
+				CalculatorViewModel.MinVoltageIn = (double)Properties[minVoltageInKey];
+			}
+
+			if (Properties.ContainsKey(maxVoltageInKey))
+			{
+				CalculatorViewModel.MaxVoltageIn = (double)Properties[maxVoltageInKey];
+			}
+
+			if (Properties.ContainsKey(minVoltageOutKey))
+			{
+				CalculatorViewModel.MinVoltageOut = (double)Properties[minVoltageOutKey];
+			}
+
+			if (Properties.ContainsKey(maxVoltageOutKey))
+			{
+				CalculatorViewModel.MaxVoltageOut = (double)Properties[maxVoltageOutKey];
+			}
+
+			if (Properties.ContainsKey(minCurrentKey))
+			{
+				CalculatorViewModel.MinCurrentDraw = (double)Properties[minCurrentKey];
+			}
+
+			if (Properties.ContainsKey(maxCurrentKey))
+			{
+				CalculatorViewModel.MaxCurrentDraw = (double)Properties[maxCurrentKey];
+			}
 			#endregion
 
 
@@ -87,6 +136,14 @@ namespace VoltageRegulatorTemperature
 			Properties[currentDrawKey] = CalculatorViewModel.CurrentDraw;
 			Properties[thermalResistanceKey] = CalculatorViewModel.ThermalResistance;
 			// Test of removing 'complex' datatypes Properties[displayedUnitsKey] = CalculatorViewModel.DisplayedUnits;
+			Properties[ambientTempKey] = CalculatorViewModel.AmbientTemp;
+			Properties[maxJunctionTempKey] = CalculatorViewModel.MaxJunctionTemp;
+			Properties[minVoltageInKey] = CalculatorViewModel.MinVoltageIn;
+			Properties[maxVoltageInKey] = CalculatorViewModel.MaxVoltageIn;
+			Properties[minVoltageOutKey] = CalculatorViewModel.MinVoltageOut;
+			Properties[maxVoltageOutKey] = CalculatorViewModel.MaxVoltageOut;
+			Properties[minCurrentKey] = CalculatorViewModel.MinCurrentDraw;
+			Properties[maxCurrentKey] = CalculatorViewModel.MaxCurrentDraw;
 			await SavePropertiesAsync();
 		}
 
