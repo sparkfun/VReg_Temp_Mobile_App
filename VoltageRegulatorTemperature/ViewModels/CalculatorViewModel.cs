@@ -12,9 +12,6 @@
 		//	DisplayedUnits = app.CalculatorViewModel.DisplayedUnits;
 		//	ThermalResistance = app.CalculatorViewModel.ThermalResistance;
 
-		//	CalculatePowerDissipated();
-		//}
-
 		public enum Units { Fahrenheit, Celsius };
 
 		bool firstRun;
@@ -65,7 +62,13 @@
 		public double CurrentDraw
 		{
 			get { return currentDraw; }
-			set { CalculatePowerDissipated(); SetProperty(ref currentDraw, value); }
+			set
+			{
+				if (SetProperty(ref currentDraw, value))
+				{
+					CalculatePowerDissipated();
+				}
+			}
 		}
 
 		public double ThermalResistance
@@ -77,7 +80,6 @@
 				{
 					CalculatePowerDissipated();
 				}
-				//SetProperty(ref thermalResistance, value);
 			}
 		}
 

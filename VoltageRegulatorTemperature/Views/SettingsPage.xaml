@@ -35,8 +35,7 @@
 
 			<Entry Text="{Binding ThermalResistance}"
 						x:Name="resistanceEntry"
-						Keyboard="Numeric"
-						TextChanged="Entry_TextChanged">
+						Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
