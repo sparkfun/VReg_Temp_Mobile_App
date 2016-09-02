@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		xmlns:cvm="clr-namespace:VoltageRegulatorTemperature.ViewModels;assembly=VoltageRegulatorTemperature"
 		x:Class="VoltageRegulatorTemperature.Views.CalculatorPage"
 		Title="Calculate Temperature"
 		Padding="10"
@@ -67,11 +68,19 @@
 			StyleId="CelciusLabel"
 			Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="true" />
 		-->
-			
-		<Label Text="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}"
-			HorizontalOptions="Center"
-			FontAttributes="Bold"
-			Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
+
+		<!-- TODO: Actively developing this label -->
+		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}"
+				HorizontalOptions="Center"
+				FontAttributes="Bold"
+				Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+			<Label.Triggers>
+				<DataTrigger TargetType="Label" Value="{x:Static cvm:CalculatorViewModel+Units.Fahrenheit}"
+						Binding="{Binding DisplayedUnits}">
+					<Setter Property="Text" Value="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}" />
+				</DataTrigger>
+			</Label.Triggers>
+		</Label>
 
 		<!-- Image Section -->
 
@@ -102,11 +111,12 @@
 
 		<Slider Value="{Binding VoltageOut}"
 					Minimum="{Binding MinVoltageOut}"
-					Maximum="24"
+					Maximum="{Binding MaxVoltageOut}"
 			x:Name="VoltageOutSlider"
 			Grid.Row="7" Grid.Column="0" />
-		<Stepper Value="{Binding VoltageOut}" Minimum="{Binding MinVoltageOut}"
-					Maximum="24"
+		<Stepper Value="{Binding VoltageOut}"
+					Minimum="{Binding MinVoltageOut}"
+					Maximum="{Binding MaxVoltageOut}"
 					Increment="0.01"
 			x:Name="VoltageOutStepper"
 			Grid.Row="7" Grid.Column="1" />

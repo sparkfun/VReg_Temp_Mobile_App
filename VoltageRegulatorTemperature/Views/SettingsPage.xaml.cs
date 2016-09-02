@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace VoltageRegulatorTemperature.Views
 {

@@ -1,16 +1,28 @@
-﻿namespace VoltageRegulatorTemperature.ViewModels
+﻿using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace VoltageRegulatorTemperature.ViewModels
 {
 	public class CalculatorViewModel : Xamarin.FormsBook.Toolkit.ViewModelBase
 	{
-		//public CalculatorViewModel()
-		//{
-		//	// Load previously stored settings
-		//	var app = Application.Current as App;
-		//	this.VoltageIn = app.CalculatorViewModel.VoltageIn;
-		//	VoltageOut = app.CalculatorViewModel.VoltageOut;
-		//	CurrentDraw = app.CalculatorViewModel.CurrentDraw;
-		//	DisplayedUnits = app.CalculatorViewModel.DisplayedUnits;
-		//	ThermalResistance = app.CalculatorViewModel.ThermalResistance;
+		public CalculatorViewModel()
+		{
+			this.ResetToDefaultSettingsCommand = new Command((nothing) =>
+			{
+				// TODO: This code is also found in App.xaml.cs => refactor?
+				ThermalResistance = 23.0;
+				DisplayedUnits = Units.Celsius;
+				AmbientTemp = 25.0;
+				MaxJunctionTemp = 125.0;
+				MinVoltageIn = 0.0;
+				MaxVoltageIn = 48.0;
+				MinVoltageOut = 0.0;
+				MaxVoltageOut = 24.0;
+				MinCurrentDraw = 0.0;
+				MaxCurrentDraw = 10.0;
+
+			});
+		}
 
 		public enum Units { Fahrenheit, Celsius };
 
@@ -26,6 +38,8 @@
 			get { return firstRun; }
 			set { SetProperty(ref firstRun, value); }
 		}
+
+		public ICommand ResetToDefaultSettingsCommand { private set; get; }
 
 		#region User IO
 		// TODO: Add validation to all inputs... max > min, etc.

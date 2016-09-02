@@ -134,6 +134,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="DoneEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\hamburger.png" />

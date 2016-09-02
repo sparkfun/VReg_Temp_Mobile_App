@@ -17,8 +17,8 @@ namespace VoltageRegulatorTemperature
 		const string maxVoltageInKey = "maxVoltageIn";
 		const string minVoltageOutKey = "minVoltageOut";
 		const string maxVoltageOutKey = "maxVoltageOut";
-		const string minCurrentKey = "minCurrent";
-		const string maxCurrentKey = "maxCurrent";
+		const string minCurrentDrawKey = "minCurrentDraw";
+		const string maxCurrentDrawKey = "maxCurrentDraw";
 		const string displayedUnitsKey = "displayedUnits";
 
 		public App()
@@ -35,6 +35,7 @@ namespace VoltageRegulatorTemperature
 			else
 			{
 				// TODO: Do first run stuff!
+				// TODO: This code also found in CalculatorViewModel's ResetToDefaultSettingsCommand
 				Properties[thermalResistanceKey] =  23.0;
 				Properties[firstRunKey]          = false;
 				Properties[ambientTempKey]       =  25.0;
@@ -43,8 +44,8 @@ namespace VoltageRegulatorTemperature
 				Properties[maxVoltageInKey]      =  48.0;
 				Properties[minVoltageOutKey]     =   0.0;
 				Properties[maxVoltageOutKey]     =  24.0;
-				Properties[minCurrentKey]        =   0.0;
-				Properties[maxCurrentKey]        =  10.0;
+				Properties[minCurrentDrawKey]        =   0.0;
+				Properties[maxCurrentDrawKey]        =  10.0;
 				SavePropertiesAsync();
 			}
 
@@ -104,14 +105,14 @@ namespace VoltageRegulatorTemperature
 				CalculatorViewModel.MaxVoltageOut = (double)Properties[maxVoltageOutKey];
 			}
 
-			if (Properties.ContainsKey(minCurrentKey))
+			if (Properties.ContainsKey(minCurrentDrawKey))
 			{
-				CalculatorViewModel.MinCurrentDraw = (double)Properties[minCurrentKey];
+				CalculatorViewModel.MinCurrentDraw = (double)Properties[minCurrentDrawKey];
 			}
 
-			if (Properties.ContainsKey(maxCurrentKey))
+			if (Properties.ContainsKey(maxCurrentDrawKey))
 			{
-				CalculatorViewModel.MaxCurrentDraw = (double)Properties[maxCurrentKey];
+				CalculatorViewModel.MaxCurrentDraw = (double)Properties[maxCurrentDrawKey];
 			}
 			#endregion
 
@@ -142,8 +143,8 @@ namespace VoltageRegulatorTemperature
 			Properties[maxVoltageInKey] = CalculatorViewModel.MaxVoltageIn;
 			Properties[minVoltageOutKey] = CalculatorViewModel.MinVoltageOut;
 			Properties[maxVoltageOutKey] = CalculatorViewModel.MaxVoltageOut;
-			Properties[minCurrentKey] = CalculatorViewModel.MinCurrentDraw;
-			Properties[maxCurrentKey] = CalculatorViewModel.MaxCurrentDraw;
+			Properties[minCurrentDrawKey] = CalculatorViewModel.MinCurrentDraw;
+			Properties[maxCurrentDrawKey] = CalculatorViewModel.MaxCurrentDraw;
 			await SavePropertiesAsync();
 		}
 
