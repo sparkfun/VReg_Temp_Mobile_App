@@ -2,11 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		xmlns:cvm="clr-namespace:VoltageRegulatorTemperature.ViewModels;assembly=VoltageRegulatorTemperature"
+		xmlns:toolkit="clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+		xmlns:converters="clr-namespace:VoltageRegulatorTemperature.Converters;assembly=VoltageRegulatorTemperature"
 		x:Class="VoltageRegulatorTemperature.Views.CalculatorPage"
 		Title="Calculate Temperature"
 		Padding="10"
 		x:Name="calculatorPage"
 		BindingContext="{Binding Source={x:Static Application.Current}, Path=CalculatorViewModel}" >
+	
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<converters:DoubleThresholdConverter x:Key="thresholdConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	
 	<ScrollView Padding="5,20,5,5">
 		<Grid>
 
@@ -53,7 +62,7 @@
 			<Label.Triggers>
 				<DataTrigger TargetType="Label"
 						Binding="{Binding DisplayedUnits}"
-						Value="Fahrenheit">
+						Value="{x:Static cvm:CalculatorViewModel+Units.Celsius}">
 					<Setter Property="IsEnabled" Value="False" />
 					<Setter Property="Text" Value="Fahrenheit" />
 				</DataTrigger>
@@ -75,9 +84,19 @@
 				FontAttributes="Bold"
 				Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
 			<Label.Triggers>
-				<DataTrigger TargetType="Label" Value="{x:Static cvm:CalculatorViewModel+Units.Fahrenheit}"
+					<!-- Change displayed units -->
+					<DataTrigger TargetType="Label" Value="0"
 						Binding="{Binding DisplayedUnits}">
-					<Setter Property="Text" Value="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}" />
+					<!-- <DataTrigger TargetType="Label" Value="{x:Static cvm:CalculatorViewModel+Units.Fahrenheit}"
+							Binding="{Binding DisplayedUnits}"> -->
+						<Setter Property="Text" Value="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}" />
+				</DataTrigger>
+					<!-- Turn junction temperature label red if it's too hot -->
+				<DataTrigger TargetType="Label" Value="true"
+						Binding="{Binding TempC,
+								Converter={StaticResource thresholdConverter}">
+								<!-- ConverterParameter='{Binding MaxJunctionTemp}'}"> -->
+					<Setter Property="TextColor" Value="Red" />
 				</DataTrigger>
 			</Label.Triggers>
 		</Label>
@@ -99,8 +118,11 @@
 					Maximum="{Binding MaxVoltageIn}"
 					x:Name="VoltageInSlider"
 				Grid.Row="5" Grid.Column="0" />
-		<Stepper Value="{Binding VoltageIn}" Minimum="{Binding MinVoltageIn}" Maximum="48" Increment="0.01"
-			Grid.Row="5" Grid.Column="1" />
+		<Stepper Value="{Binding VoltageIn}"
+					Minimum="{Binding MinVoltageIn}"
+					Maximum="{Binding MaxVoltageIn}"
+					Increment="0.01"
+				Grid.Row="5" Grid.Column="1" />
 
 		<!-- Output Section -->
 

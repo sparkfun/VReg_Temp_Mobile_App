@@ -88,6 +88,7 @@
 						</DataTrigger>
 					</Label.Triggers>
 				</Label>
+				<!-- TODO: Need to change units -->
 				<renderers:DoneEntry Text="{Binding MaxJunctionTemp}" x:Name="maxJunctionTempEntry" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />

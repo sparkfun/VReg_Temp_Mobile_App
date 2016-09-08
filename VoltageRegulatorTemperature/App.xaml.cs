@@ -44,8 +44,8 @@ namespace VoltageRegulatorTemperature
 				Properties[maxVoltageInKey]      =  48.0;
 				Properties[minVoltageOutKey]     =   0.0;
 				Properties[maxVoltageOutKey]     =  24.0;
-				Properties[minCurrentDrawKey]        =   0.0;
-				Properties[maxCurrentDrawKey]        =  10.0;
+				Properties[minCurrentDrawKey]    =   0.0;
+				Properties[maxCurrentDrawKey]    =  10.0;
 				SavePropertiesAsync();
 			}
 
@@ -69,6 +69,7 @@ namespace VoltageRegulatorTemperature
 				CalculatorViewModel.ThermalResistance = (double)Properties[thermalResistanceKey];
 			}
 
+			// TODO: Enable state storage of units
 			// Test of removing 'complex' datatypes
 			//if (Properties.ContainsKey(displayedUnitsKey))
 			//{

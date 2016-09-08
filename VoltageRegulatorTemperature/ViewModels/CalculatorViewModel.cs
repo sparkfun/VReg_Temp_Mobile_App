@@ -105,6 +105,11 @@ namespace VoltageRegulatorTemperature.ViewModels
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the thermal resistance.
+		/// Always assumes units of ˚C/W
+		/// </summary>
+		/// <value>The thermal resistance.</value>
 		public double ThermalResistance
 		{
 			get { return thermalResistance; }
@@ -218,6 +223,9 @@ namespace VoltageRegulatorTemperature.ViewModels
 			CalculateTemperatureRise(); // This always changes if dissipated power changes
 		}
 
+		/// <summary>
+		/// Calculates the temperature rise of the regulator junction.
+		/// </summary>
 		void CalculateTemperatureRise()
 		{
 			if (!PowerDissipated.Equals(0))
