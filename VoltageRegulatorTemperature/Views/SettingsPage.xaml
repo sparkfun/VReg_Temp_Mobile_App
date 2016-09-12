@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		xmlns:toolkit="clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
+		xmlns:behaviors="clr-namespace:VoltageRegulatorTemperature.Behaviors"
+		xmlns:viewmodels="clr-namespace:VoltageRegulatorTemperature.ViewModels"
 		xmlns:renderers="clr-namespace:VoltageRegulatorTemperature.Renderers;assembly=VoltageRegulatorTemperature"
 		x:Class="VoltageRegulatorTemperature.Views.SettingsPage" Title="Settings" Icon="hamburger.png" Padding="10"
 		x:Name="settingsPage"
@@ -32,6 +34,9 @@
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
 				</renderers:DoneEntry>
+				
+				<!-- Temperature units radio buttons -->
+				
 				<Label Text="Temperature Units" />
 				<Grid>
 					<Grid.Resources>
@@ -42,9 +47,15 @@
 							</Style>
 						</ResourceDictionary>
 					</Grid.Resources>
-					<Label Text="Fahrenheit (°F)" TextColor="Gray" Grid.Column="0">
+					<Label Text="Fahrenheit (°F)" TextColor="Gray" x:Name="fahrenheit" StyleId="fahrenheit" Grid.Column="0">
+						<!--
+						<Label.GestureRecognizers>
+							<TapGestureRecognizer Tapped="viewmodels:RadioSelectedCommand" />
+						</Label.GestureRecognizers>
+						-->
 						<Label.Behaviors>
 							<toolkit:RadioBehavior x:Name="fahrenheitRadio" />
+							<behaviors:ChangeUnitsBehavior />
 						</Label.Behaviors>
 						<Label.Triggers>
 							<DataTrigger TargetType="Label" Value="True"
@@ -53,14 +64,26 @@
 							</DataTrigger>
 						</Label.Triggers>
 					</Label>
-					<Label Text="Celsius (°C)" TextColor="Gray" Grid.Column="1">
+					<Label Text="Celsius (°C)" TextColor="Gray" StyleId="celsius" Grid.Column="1">
+						<!-- <Label.GestureRecognizers>
+							<TapGestureRecognizer
+									Command="{Binding RadioSelectedCommand}"
+									CommandParameter="celsius" />
+						</Label.GestureRecognizers> -->
 						<Label.Behaviors>
 							<toolkit:RadioBehavior x:Name="celsiusRadio" IsChecked="True" />
+							<behaviors:ChangeUnitsBehavior />
 						</Label.Behaviors>
 						<Label.Triggers>
 							<DataTrigger TargetType="Label"  Value="True"
 									Binding="{Binding Source={x:Reference celsiusRadio}, Path=IsChecked}">
 								<Setter Property="TextColor" Value="Green" />
+
+								
+								<!-- <Setter Property="DisplayedUnits" Value="Celsius" /> -->
+								<!-- Maybe bind another hidden something to the IsChecked property? -->
+
+								
 							</DataTrigger>
 						</Label.Triggers>
 					</Label>
@@ -115,7 +138,6 @@
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
 				</renderers:DoneEntry>
-				<!-- TODO: This doesn't seem to be getting set! -->
 				<Label Text="Maximum Voltage Out" />
 				<renderers:DoneEntry Text="{Binding MaxVoltageOut}" x:Name="maxVoltageOutEntry" Keyboard="Numeric">
 					<Entry.Behaviors>

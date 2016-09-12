@@ -37,6 +37,7 @@ namespace VoltageRegulatorTemperature
 				// TODO: Do first run stuff!
 				// TODO: This code also found in CalculatorViewModel's ResetToDefaultSettingsCommand
 				Properties[thermalResistanceKey] =  23.0;
+				Properties[displayUnitsKey]      = (int)CalculatorViewModel.Units.Celsius;
 				Properties[firstRunKey]          = false;
 				Properties[ambientTempKey]       =  25.0;
 				Properties[maxJunctionTempKey]   = 125.0;
@@ -69,12 +70,10 @@ namespace VoltageRegulatorTemperature
 				CalculatorViewModel.ThermalResistance = (double)Properties[thermalResistanceKey];
 			}
 
-			// TODO: Enable state storage of units
-			// Test of removing 'complex' datatypes
-			//if (Properties.ContainsKey(displayedUnitsKey))
-			//{
-			//	CalculatorViewModel.DisplayedUnits = (CalculatorViewModel.Units)Properties[displayedUnitsKey];
-			//}
+			if (Properties.ContainsKey(displayedUnitsKey))
+			{
+				CalculatorViewModel.DisplayedUnits = (CalculatorViewModel.Units)Properties[displayedUnitsKey];
+			}
 
 			if (Properties.ContainsKey(ambientTempKey))
 			{
@@ -137,7 +136,7 @@ namespace VoltageRegulatorTemperature
 			Properties[voltageOutKey] = CalculatorViewModel.VoltageOut;
 			Properties[currentDrawKey] = CalculatorViewModel.CurrentDraw;
 			Properties[thermalResistanceKey] = CalculatorViewModel.ThermalResistance;
-			// Test of removing 'complex' datatypes Properties[displayedUnitsKey] = CalculatorViewModel.DisplayedUnits;
+			Properties[displayedUnitsKey] = (int)CalculatorViewModel.DisplayedUnits;
 			Properties[ambientTempKey] = CalculatorViewModel.AmbientTemp;
 			Properties[maxJunctionTempKey] = CalculatorViewModel.MaxJunctionTemp;
 			Properties[minVoltageInKey] = CalculatorViewModel.MinVoltageIn;

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Diagnostics;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace VoltageRegulatorTemperature.ViewModels
@@ -7,6 +8,9 @@ namespace VoltageRegulatorTemperature.ViewModels
 	{
 		public CalculatorViewModel()
 		{
+			// Configure command with a method
+			radioSelectedCommand = new Command(OnTapped);
+
 			this.ResetToDefaultSettingsCommand = new Command((nothing) =>
 			{
 				// TODO: This code is also found in App.xaml.cs => refactor?
@@ -40,6 +44,18 @@ namespace VoltageRegulatorTemperature.ViewModels
 		}
 
 		public ICommand ResetToDefaultSettingsCommand { private set; get; }
+
+		ICommand radioSelectedCommand;
+
+		public ICommand RadioSelectedCommand
+		{
+			get { return radioSelectedCommand; }
+		}
+
+		void OnTapped(object sender)
+		{
+			Debug.WriteLine("Parameter: " + sender);
+		}
 
 		#region User IO
 		// TODO: Add validation to all inputs... max > min, etc.

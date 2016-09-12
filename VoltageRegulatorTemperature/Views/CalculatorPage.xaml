@@ -13,6 +13,7 @@
 	<ContentPage.Resources>
 		<ResourceDictionary>
 			<converters:DoubleThresholdConverter x:Key="thresholdConverter" />
+			<converters:IsCelsiusConverter x:Key="isCelsius" />
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	
@@ -64,7 +65,8 @@
 						Binding="{Binding DisplayedUnits}"
 						Value="{x:Static cvm:CalculatorViewModel+Units.Celsius}">
 					<Setter Property="IsEnabled" Value="False" />
-					<Setter Property="Text" Value="Fahrenheit" />
+					<Setter Property="Text" Value="Celsius" />
+					<Setter Property="TextColor" Value="Blue" />
 				</DataTrigger>
 			</Label.Triggers>
 		</Label>
@@ -79,23 +81,27 @@
 		-->
 
 		<!-- TODO: Actively developing this label -->
-		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}"
+		<!-- Trigger is changing color, but not the Text -->
+		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C !!'}"
 				HorizontalOptions="Center"
 				FontAttributes="Bold"
 				Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
 			<Label.Triggers>
 					<!-- Change displayed units -->
-					<DataTrigger TargetType="Label" Value="0"
-						Binding="{Binding DisplayedUnits}">
-					<!-- <DataTrigger TargetType="Label" Value="{x:Static cvm:CalculatorViewModel+Units.Fahrenheit}"
-							Binding="{Binding DisplayedUnits}"> -->
-						<Setter Property="Text" Value="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}" />
+				<DataTrigger TargetType="Label" Value="true"
+						Binding="{Binding DisplayedUnits,
+								Converter={StaticResource isCelsius}">
+					<Setter Property="Text" Value="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}" />
+				</DataTrigger>
+				<DataTrigger TargetType="Label" Value="false"
+						Binding="{Binding DisplayedUnits,
+								Converter={StaticResource isCelsius}">
+					<Setter Property="Text" Value="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}" />
 				</DataTrigger>
 					<!-- Turn junction temperature label red if it's too hot -->
 				<DataTrigger TargetType="Label" Value="true"
 						Binding="{Binding TempC,
 								Converter={StaticResource thresholdConverter}">
-								<!-- ConverterParameter='{Binding MaxJunctionTemp}'}"> -->
 					<Setter Property="TextColor" Value="Red" />
 				</DataTrigger>
 			</Label.Triggers>
