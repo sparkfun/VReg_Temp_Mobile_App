@@ -1,6 +1,9 @@
 ﻿using VoltageRegulatorTemperature.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+// Enable xamlc for whole assembly
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace VoltageRegulatorTemperature
 {
 	public partial class App : Application

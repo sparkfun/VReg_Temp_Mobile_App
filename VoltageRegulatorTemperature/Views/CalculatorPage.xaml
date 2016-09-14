@@ -25,7 +25,6 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*"    />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -42,18 +41,12 @@
 
 		<!-- Calculated Output Section -->
 
-		<!--
-		<Label Text="{Binding RegulatorModel.ThermalResistance, StringFormat='POWER DISSIPATED: {0:F3} Ω'}"
-				HorizontalOptions="Center"
-			FontAttributes="Bold"
-			Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-		-->
-
 		<Label Text="{Binding PowerDissipated, StringFormat='POWER DISSIPATED: {0:F3} W'}"
 			HorizontalOptions="Center"
 			FontAttributes="Bold"
 			Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
 
+		<!--
 		<Label x:Name="junctionTemp"
 					Text=""
 					HorizontalOptions="Center"
@@ -70,24 +63,16 @@
 				</DataTrigger>
 			</Label.Triggers>
 		</Label>
-
-		<!--
-		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}"
-			x:Name="TempRise"
-			HorizontalOptions="Center"
-			FontAttributes="Bold"
-			StyleId="CelciusLabel"
-			Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="true" />
 		-->
 
-		<!-- TODO: Actively developing this label -->
-		<!-- Trigger is changing color, but not the Text -->
-		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C !!'}"
+		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}"
 				HorizontalOptions="Center"
 				FontAttributes="Bold"
-				Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+				Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
 			<Label.Triggers>
-					<!-- Change displayed units -->
+
+				<!-- Change displayed units -->
+					
 				<DataTrigger TargetType="Label" Value="true"
 						Binding="{Binding DisplayedUnits,
 								Converter={StaticResource isCelsius}">
@@ -98,7 +83,9 @@
 								Converter={StaticResource isCelsius}">
 					<Setter Property="Text" Value="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}" />
 				</DataTrigger>
-					<!-- Turn junction temperature label red if it's too hot -->
+					
+				<!-- Turn junction temperature label red if it's too hot -->
+					
 				<DataTrigger TargetType="Label" Value="true"
 						Binding="{Binding TempC,
 								Converter={StaticResource thresholdConverter}">
@@ -110,58 +97,58 @@
 		<!-- Image Section -->
 
 		<Image Source="linear_model.png"
-			Grid.Row="3" Grid.ColumnSpan="2" />
+			Grid.Row="2" Grid.ColumnSpan="2" />
 
 		<!-- Input Section -->
 
 		<Label Text="{Binding VoltageIn, StringFormat='Volatge in: {0:F2} V'}"
 			x:Name="VoltageInLabel"
 			HorizontalOptions="StartAndExpand"
-			Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" />
+			Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding VoltageIn, Mode=TwoWay}"
 					Minimum="{Binding MinVoltageIn}"
 					Maximum="{Binding MaxVoltageIn}"
 					x:Name="VoltageInSlider"
-				Grid.Row="5" Grid.Column="0" />
+				Grid.Row="4" Grid.Column="0" />
 		<Stepper Value="{Binding VoltageIn}"
 					Minimum="{Binding MinVoltageIn}"
 					Maximum="{Binding MaxVoltageIn}"
 					Increment="0.01"
-				Grid.Row="5" Grid.Column="1" />
+				Grid.Row="4" Grid.Column="1" />
 
 		<!-- Output Section -->
 
 		<Label Text="{Binding VoltageOut, StringFormat='Volatge out: {0:F2} V'}"
 			x:Name="VoltageOutLabel"
 			HorizontalOptions="StartAndExpand"
-			Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" />
+			Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding VoltageOut}"
 					Minimum="{Binding MinVoltageOut}"
 					Maximum="{Binding MaxVoltageOut}"
 			x:Name="VoltageOutSlider"
-			Grid.Row="7" Grid.Column="0" />
+			Grid.Row="6" Grid.Column="0" />
 		<Stepper Value="{Binding VoltageOut}"
 					Minimum="{Binding MinVoltageOut}"
 					Maximum="{Binding MaxVoltageOut}"
 					Increment="0.01"
 			x:Name="VoltageOutStepper"
-			Grid.Row="7" Grid.Column="1" />
+			Grid.Row="6" Grid.Column="1" />
 
 		<Label Text="{Binding CurrentDraw, StringFormat='Current out: {0:F3} A'}"
 			HorizontalOptions="StartAndExpand"
-			Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
+			Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding CurrentDraw}"
 					Minimum="{Binding MinCurrentDraw}"
 					Maximum="{Binding MaxCurrentDraw}"
-			Grid.Row="9" Grid.Column="0" />
+			Grid.Row="8" Grid.Column="0" />
 		<Stepper Value="{Binding CurrentDraw}"
 					Minimum="{Binding MinCurrentDraw}"
 					Maximum="{Binding MaxCurrentDraw}"
 					Increment="0.001"
-			Grid.Row="9" Grid.Column="1" />	
+			Grid.Row="8" Grid.Column="1" />	
 		</Grid>
 	</ScrollView>
 </ContentPage>

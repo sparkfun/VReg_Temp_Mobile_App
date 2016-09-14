@@ -1,10 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		xmlns:toolkit="clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
 		xmlns:behaviors="clr-namespace:VoltageRegulatorTemperature.Behaviors"
 		xmlns:viewmodels="clr-namespace:VoltageRegulatorTemperature.ViewModels"
 		xmlns:renderers="clr-namespace:VoltageRegulatorTemperature.Renderers;assembly=VoltageRegulatorTemperature"
+		xmlns:converters="clr-namespace:VoltageRegulatorTemperature.Converters;assembly=VoltageRegulatorTemperature"
 		x:Class="VoltageRegulatorTemperature.Views.SettingsPage" Title="Settings" Icon="hamburger.png" Padding="10"
 		x:Name="settingsPage"
 		BindingContext="{Binding Source={x:Static Application.Current}, Path=CalculatorViewModel}">
@@ -20,15 +21,13 @@
 					</Trigger>
 				</Style.Triggers>
 			</Style>
+			<converters:CelsiusToFahrenheitConverter x:Key="celsiusToFahrenheit" />
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
 		<ScrollView>
 			<StackLayout VerticalOptions="FillAndExpand" Padding="10">
 				<Label Text="Thermal Resistance (˚C/W)" />
-				<!-- <Entry Text="{Binding ThermalResistance, StringFormat='{0:F2}'}"
-						x:Name="resistanceEntry"
-						Keyboard="Numeric" /> -->
 				<renderers:DoneEntry Text="{Binding ThermalResistance}" x:Name="resistanceEntry" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
@@ -47,15 +46,9 @@
 							</Style>
 						</ResourceDictionary>
 					</Grid.Resources>
-					<Label Text="Fahrenheit (°F)" TextColor="Gray" x:Name="fahrenheit" StyleId="fahrenheit" Grid.Column="0">
-						<!--
-						<Label.GestureRecognizers>
-							<TapGestureRecognizer Tapped="viewmodels:RadioSelectedCommand" />
-						</Label.GestureRecognizers>
-						-->
+					<Label Text="Fahrenheit (°F)" TextColor="Gray" StyleId="fahrenheit" Grid.Column="0">
 						<Label.Behaviors>
-							<toolkit:RadioBehavior x:Name="fahrenheitRadio" />
-							<behaviors:ChangeUnitsBehavior />
+							<behaviors:UnitsRadioBehavior x:Name="fahrenheitRadio" />
 						</Label.Behaviors>
 						<Label.Triggers>
 							<DataTrigger TargetType="Label" Value="True"
@@ -65,25 +58,13 @@
 						</Label.Triggers>
 					</Label>
 					<Label Text="Celsius (°C)" TextColor="Gray" StyleId="celsius" Grid.Column="1">
-						<!-- <Label.GestureRecognizers>
-							<TapGestureRecognizer
-									Command="{Binding RadioSelectedCommand}"
-									CommandParameter="celsius" />
-						</Label.GestureRecognizers> -->
 						<Label.Behaviors>
-							<toolkit:RadioBehavior x:Name="celsiusRadio" IsChecked="True" />
-							<behaviors:ChangeUnitsBehavior />
+							<behaviors:UnitsRadioBehavior x:Name="celsiusRadio" IsChecked="True" />
 						</Label.Behaviors>
 						<Label.Triggers>
 							<DataTrigger TargetType="Label"  Value="True"
 									Binding="{Binding Source={x:Reference celsiusRadio}, Path=IsChecked}">
 								<Setter Property="TextColor" Value="Green" />
-
-								
-								<!-- <Setter Property="DisplayedUnits" Value="Celsius" /> -->
-								<!-- Maybe bind another hidden something to the IsChecked property? -->
-
-								
 							</DataTrigger>
 						</Label.Triggers>
 					</Label>
@@ -93,15 +74,26 @@
 						<DataTrigger TargetType="Label" Value="True"
 								Binding="{Binding Source={x:Reference  fahrenheitRadio}, Path=IsChecked}">
 							<Setter Property="Text" Value="Ambient Temperature (˚F)" />
-							<!-- Add call to show units in ˚F -->
 						</DataTrigger>
 					</Label.Triggers>
 				</Label>
-				<renderers:DoneEntry Text="{Binding AmbientTemp}" x:Name="ambientTempEntry" Keyboard="Numeric">
-					<Entry.Behaviors>
+
+				<!-- TODO: Working on getting this coverter running -->
+				<renderers:DoneEntry Text="{Binding AmbientTemp}"
+						x:Name="ambientTempEntry" Keyboard="Numeric">
+					<renderers:DoneEntry.Triggers>
+						<DataTrigger TargetType="renderers:DoneEntry" Value="True"
+								Binding="{Binding Source={x:Reference  fahrenheitRadio}, Path=IsChecked}">
+							<Setter Property="Text"
+									Value="{Binding AmbientTemp, Mode=TwoWay,
+									Converter={StaticResource celsiusToFahrenheit}}" />
+						</DataTrigger>
+					</renderers:DoneEntry.Triggers>
+					<renderers:DoneEntry.Behaviors>
 						<toolkit:NumericValidationBehavior />
-					</Entry.Behaviors>
+					</renderers:DoneEntry.Behaviors>
 				</renderers:DoneEntry>
+					
 				<Label Text="Max Junction Temperature (˚C)">
 					<Label.Triggers>
 						<DataTrigger TargetType="Label" Value="True"
