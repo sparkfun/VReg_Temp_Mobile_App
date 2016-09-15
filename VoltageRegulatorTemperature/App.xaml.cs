@@ -29,95 +29,93 @@ namespace VoltageRegulatorTemperature
 			// Instantiate CalculatorViewModel for sharing between pages
 			CalculatorViewModel = new ViewModels.CalculatorViewModel();
 
-			#region PersistantProperties
-			// TODO: This manual save/restore is tedious, implement auto serialization
-			if (Properties.ContainsKey(firstRunKey) && Properties[firstRunKey].Equals(true))
-			{
-				CalculatorViewModel.FirstRun = (bool)Properties[firstRunKey];
-			}
-			else
-			{
-				// TODO: Do first run stuff!
-				// TODO: This code also found in CalculatorViewModel's ResetToDefaultSettingsCommand
-				Properties[thermalResistanceKey] =  23.0;
-				Properties[displayUnitsKey]      = (int)CalculatorViewModel.Units.Celsius;
-				Properties[firstRunKey]          = false;
-				Properties[ambientTempKey]       =  25.0;
-				Properties[maxJunctionTempKey]   = 125.0;
-				Properties[minVoltageInKey]      =   0.0;
-				Properties[maxVoltageInKey]      =  48.0;
-				Properties[minVoltageOutKey]     =   0.0;
-				Properties[maxVoltageOutKey]     =  24.0;
-				Properties[minCurrentDrawKey]    =   0.0;
-				Properties[maxCurrentDrawKey]    =  10.0;
-				SavePropertiesAsync();
-			}
+			//#region PersistantProperties
+			//// TODO: This manual save/restore is tedious, implement auto serialization
+			//if (!Properties.ContainsKey(firstRunKey))
+			//{
+			//	// Do first run stuff
+			//	// TODO: This code also found in CalculatorViewModel's ResetToDefaultSettingsCommand
+			//	Properties[thermalResistanceKey] =  23.0;
+			//	Properties[displayedUnitsKey]      = (int)CalculatorViewModel.Units.Celsius;
+			//	Properties[firstRunKey]          = false;
+			//	Properties[ambientTempKey]       =  25.0;
+			//	Properties[maxJunctionTempKey]   = 125.0;
+			//	Properties[minVoltageInKey]      =   0.0;
+			//	Properties[maxVoltageInKey]      =  48.0;
+			//	Properties[minVoltageOutKey]     =   0.0;
+			//	Properties[maxVoltageOutKey]     =  24.0;
+			//	Properties[minCurrentDrawKey]    =   0.0;
+			//	Properties[maxCurrentDrawKey]    =  10.0;
+			//	SavePropertiesAsync();
+			//}
 
-			if (Properties.ContainsKey(voltageInKey))
-			{
-				CalculatorViewModel.VoltageIn = (double)Properties[voltageInKey];
-			}
+			//// Load UI limits so checks on valid values pass when they should
+			//if (Properties.ContainsKey(minVoltageInKey))
+			//{
+			//	CalculatorViewModel.MinVoltageIn = (double)Properties[minVoltageInKey];
+			//}
 
-			if (Properties.ContainsKey(voltageOutKey))
-			{
-				CalculatorViewModel.VoltageOut = (double)Properties[voltageOutKey];
-			}
+			//if (Properties.ContainsKey(maxVoltageInKey))
+			//{
+			//	CalculatorViewModel.MaxVoltageIn = (double)Properties[maxVoltageInKey];
+			//}
 
-			if (Properties.ContainsKey(currentDrawKey))
-			{
-				CalculatorViewModel.CurrentDraw = (double)Properties[currentDrawKey];
-			}
+			//if (Properties.ContainsKey(minVoltageOutKey))
+			//{
+			//	CalculatorViewModel.MinVoltageOut = (double)Properties[minVoltageOutKey];
+			//}
 
-			if (Properties.ContainsKey(thermalResistanceKey))
-			{
-				CalculatorViewModel.ThermalResistance = (double)Properties[thermalResistanceKey];
-			}
+			//if (Properties.ContainsKey(maxVoltageOutKey))
+			//{
+			//	CalculatorViewModel.MaxVoltageOut = (double)Properties[maxVoltageOutKey];
+			//}
 
-			if (Properties.ContainsKey(displayedUnitsKey))
-			{
-				CalculatorViewModel.DisplayedUnits = (CalculatorViewModel.Units)Properties[displayedUnitsKey];
-			}
+			//if (Properties.ContainsKey(minCurrentDrawKey))
+			//{
+			//	CalculatorViewModel.MinCurrentDraw = (double)Properties[minCurrentDrawKey];
+			//}
 
-			if (Properties.ContainsKey(ambientTempKey))
-			{
-				CalculatorViewModel.AmbientTemp = (double)Properties[ambientTempKey];
-			}
+			//if (Properties.ContainsKey(maxCurrentDrawKey))
+			//{
+			//	CalculatorViewModel.MaxCurrentDraw = (double)Properties[maxCurrentDrawKey];
+			//}
 
-			if (Properties.ContainsKey(maxJunctionTempKey))
-			{
-				CalculatorViewModel.MaxJunctionTemp = (double)Properties[maxJunctionTempKey];
-			}
+			//// Load simulation settings
+			//if (Properties.ContainsKey(voltageInKey))
+			//{
+			//	CalculatorViewModel.VoltageIn = (double)Properties[voltageInKey];
+			//}
 
-			if (Properties.ContainsKey(minVoltageInKey))
-			{
-				CalculatorViewModel.MinVoltageIn = (double)Properties[minVoltageInKey];
-			}
+			//if (Properties.ContainsKey(voltageOutKey))
+			//{
+			//	CalculatorViewModel.VoltageOut = (double)Properties[voltageOutKey];
+			//}
 
-			if (Properties.ContainsKey(maxVoltageInKey))
-			{
-				CalculatorViewModel.MaxVoltageIn = (double)Properties[maxVoltageInKey];
-			}
+			//if (Properties.ContainsKey(currentDrawKey))
+			//{
+			//	CalculatorViewModel.CurrentDraw = (double)Properties[currentDrawKey];
+			//}
 
-			if (Properties.ContainsKey(minVoltageOutKey))
-			{
-				CalculatorViewModel.MinVoltageOut = (double)Properties[minVoltageOutKey];
-			}
+			//if (Properties.ContainsKey(thermalResistanceKey))
+			//{
+			//	CalculatorViewModel.ThermalResistance = (double)Properties[thermalResistanceKey];
+			//}
 
-			if (Properties.ContainsKey(maxVoltageOutKey))
-			{
-				CalculatorViewModel.MaxVoltageOut = (double)Properties[maxVoltageOutKey];
-			}
+			//if (Properties.ContainsKey(displayedUnitsKey))
+			//{
+			//	CalculatorViewModel.DisplayedUnits = (CalculatorViewModel.Units)Properties[displayedUnitsKey];
+			//}
 
-			if (Properties.ContainsKey(minCurrentDrawKey))
-			{
-				CalculatorViewModel.MinCurrentDraw = (double)Properties[minCurrentDrawKey];
-			}
+			//if (Properties.ContainsKey(ambientTempKey))
+			//{
+			//	CalculatorViewModel.AmbientTemp = (double)Properties[ambientTempKey];
+			//}
 
-			if (Properties.ContainsKey(maxCurrentDrawKey))
-			{
-				CalculatorViewModel.MaxCurrentDraw = (double)Properties[maxCurrentDrawKey];
-			}
-			#endregion
+			//if (Properties.ContainsKey(maxJunctionTempKey))
+			//{
+			//	CalculatorViewModel.MaxJunctionTemp = (double)Properties[maxJunctionTempKey];
+			//}
+			//#endregion
 
 
 			MainPage = new VoltageRegulatorTemperature.Views.MainPage();

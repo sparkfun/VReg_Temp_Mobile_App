@@ -88,6 +88,11 @@
 									Value="{Binding AmbientTemp, Mode=TwoWay,
 									Converter={StaticResource celsiusToFahrenheit}}" />
 						</DataTrigger>
+						<DataTrigger TargetType="renderers:DoneEntry" Value="False"
+								Binding="{Binding Source={x:Reference  fahrenheitRadio}, Path=IsChecked}">
+							<Setter Property="Text"
+									Value="{Binding AmbientTemp, Mode=TwoWay}" />
+						</DataTrigger>
 					</renderers:DoneEntry.Triggers>
 					<renderers:DoneEntry.Behaviors>
 						<toolkit:NumericValidationBehavior />
@@ -99,10 +104,11 @@
 						<DataTrigger TargetType="Label" Value="True"
 								Binding="{Binding Source={x:Reference  fahrenheitRadio}, Path=IsChecked}">
 							<Setter Property="Text" Value="Max Junction Temperature (˚F)" />
-							<!-- Add call to show units in ˚F -->
 						</DataTrigger>
 					</Label.Triggers>
 				</Label>
+
+				
 				<!-- TODO: Need to change units -->
 				<renderers:DoneEntry Text="{Binding MaxJunctionTemp}" x:Name="maxJunctionTempEntry" Keyboard="Numeric">
 					<Entry.Behaviors>

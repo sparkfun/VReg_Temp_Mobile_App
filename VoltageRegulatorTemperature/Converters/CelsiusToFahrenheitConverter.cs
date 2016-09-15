@@ -9,13 +9,11 @@ namespace VoltageRegulatorTemperature.Converters
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			Debug.WriteLine(value.GetType());
 			return (double)value * 1.8 + 32;
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			Debug.WriteLine(value.GetType());
 			double number;
 			if (Double.TryParse((string)value, out number))
 			{

@@ -26,6 +26,18 @@ namespace VoltageRegulatorTemperature.ViewModels
 				MaxCurrentDraw = 10.0;
 
 			});
+
+			// TODO: Test out default values at start. Will restore them later.
+			ThermalResistance = 23.0;
+			DisplayedUnits = Units.Celsius;
+			AmbientTemp = 25.0;
+			MaxJunctionTemp = 125.0;
+			MinVoltageIn = 0.0;
+			MaxVoltageIn = 48.0;
+			MinVoltageOut = 0.0;
+			MaxVoltageOut = 24.0;
+			MinCurrentDraw = 0.0;
+			MaxCurrentDraw = 10.0;
 		}
 
 		public enum Units { Fahrenheit, Celsius };
@@ -43,6 +55,7 @@ namespace VoltageRegulatorTemperature.ViewModels
 			set { SetProperty(ref firstRun, value); }
 		}
 
+		#region Commands
 		public ICommand ResetToDefaultSettingsCommand { private set; get; }
 
 		ICommand radioSelectedCommand;
@@ -56,9 +69,9 @@ namespace VoltageRegulatorTemperature.ViewModels
 		{
 			Debug.WriteLine("Parameter: " + sender);
 		}
+		#endregion
 
 		#region User IO
-		// TODO: Add validation to all inputs... max > min, etc.
 		public double VoltageIn
 		{
 			get { return voltageIn; }
@@ -94,7 +107,13 @@ namespace VoltageRegulatorTemperature.ViewModels
 		public double PowerDissipated
 		{
 			get { return powerDissipated; }
-			set { SetProperty(ref powerDissipated, value); }
+			set
+			{
+				if (SetProperty(ref powerDissipated, value))
+				{
+					CalculateTemperatureRise();
+				}
+			}
 		}
 
 		public double TempC
@@ -141,13 +160,25 @@ namespace VoltageRegulatorTemperature.ViewModels
 		public double AmbientTemp
 		{
 			get { return ambientTemp; }
-			set { SetProperty(ref ambientTemp, value); }
+			set
+			{
+				if (SetProperty(ref ambientTemp, value))
+				{
+					CalculateTemperatureRise();
+				}
+			}
 		}
 
 		public double MaxJunctionTemp
 		{
 			get { return maxJunctionTemp; }
-			set { SetProperty(ref maxJunctionTemp, value); }
+			set
+			{
+				if (SetProperty(ref maxJunctionTemp, value))
+				{
+					CalculateTemperatureRise();
+				}
+			}
 		}
 		#endregion
 
