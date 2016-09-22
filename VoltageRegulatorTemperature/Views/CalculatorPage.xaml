@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		xmlns:cvm="clr-namespace:VoltageRegulatorTemperature.ViewModels;assembly=VoltageRegulatorTemperature"
@@ -44,30 +44,13 @@
 		<Label Text="{Binding PowerDissipated, StringFormat='POWER DISSIPATED: {0:F3} W'}"
 			HorizontalOptions="Center"
 			FontAttributes="Bold"
+			AutomationId="PowerDissipatedLabel"
 			Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-
-		<!--
-		<Label x:Name="junctionTemp"
-					Text=""
-					HorizontalOptions="Center"
-					FontAttributes="Bold"
-					StyleId="junctTemp"
-					Grid.Row="1" Grid.Column="0" IsEnabled="true">
-			<Label.Triggers>
-				<DataTrigger TargetType="Label"
-						Binding="{Binding DisplayedUnits}"
-						Value="{x:Static cvm:CalculatorViewModel+Units.Celsius}">
-					<Setter Property="IsEnabled" Value="False" />
-					<Setter Property="Text" Value="Celsius" />
-					<Setter Property="TextColor" Value="Blue" />
-				</DataTrigger>
-			</Label.Triggers>
-		</Label>
-		-->
 
 		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}"
 				HorizontalOptions="Center"
 				FontAttributes="Bold"
+				AutomationId="JunctionTemperatureLabel"
 				Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
 			<Label.Triggers>
 
@@ -85,7 +68,7 @@
 				</DataTrigger>
 					
 				<!-- Turn junction temperature label red if it's too hot -->
-					
+				<!-- TODO: This doesn't catch a change in max junction temperature -->
 				<DataTrigger TargetType="Label" Value="true"
 						Binding="{Binding TempC,
 								Converter={StaticResource thresholdConverter}">
@@ -104,6 +87,7 @@
 		<Label Text="{Binding VoltageIn, StringFormat='Volatge in: {0:F2} V'}"
 			x:Name="VoltageInLabel"
 			HorizontalOptions="StartAndExpand"
+			AutomationId="VoltageInSlider"
 			Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding VoltageIn, Mode=TwoWay}"
@@ -122,6 +106,7 @@
 		<Label Text="{Binding VoltageOut, StringFormat='Volatge out: {0:F2} V'}"
 			x:Name="VoltageOutLabel"
 			HorizontalOptions="StartAndExpand"
+			AutomationId="VoltageOutSlider"
 			Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding VoltageOut}"

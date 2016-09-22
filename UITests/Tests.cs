@@ -26,12 +26,14 @@ namespace VoltageRegulatorTemperature.UITests
 		}
 
 		[Test]
-		public void WelcomeTextIsDisplayed()
+		[Category("category1")]
+		public void InitialUITest()
 		{
-			AppResult[] results = app.WaitForElement(c => c.Marked("Welcome to Xamarin Forms!"));
-			app.Screenshot("Welcome screen.");
-
-			Assert.IsTrue(results.Any());
+			// Invoke the REPL so that we can explore the user interface
+			//app.Repl();
+			app.WaitForElement(c => c.Marked("PowerDissipatedLabel"));
+			app.Screenshot("App loaded.");
+			var voltageIn = app.Query("VoltageInSlider").First().Text;
 		}
 	}
 }
