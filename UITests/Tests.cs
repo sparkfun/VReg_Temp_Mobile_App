@@ -14,18 +14,18 @@ namespace VoltageRegulatorTemperature.UITests
 		IApp app;
 		Platform platform;
 
-		public Tests(Platform platform)
-		{
-			this.platform = platform;
-		}
+		//public Tests(Platform platform)
+		//{
+		//	this.platform = platform;
+		//}
 
-		[SetUp]
+		//[SetUp]
 		public void BeforeEachTest()
 		{
 			app = AppInitializer.StartApp(platform);
 		}
 
-		[Test]
+		//[Test]
 		[Category("category1")]
 		public void InitialUITest()
 		{
@@ -34,6 +34,23 @@ namespace VoltageRegulatorTemperature.UITests
 			app.WaitForElement(c => c.Marked("PowerDissipatedLabel"));
 			app.Screenshot("App loaded.");
 			var voltageIn = app.Query("VoltageInSlider").First().Text;
+		}
+
+		//[Test]
+		public void SetRealisticValuesInFahrenheitBoth()
+		{
+			app.SetSliderValue(x => x.Class("FormsSeekBar").Index(0), 250);
+			app.Screenshot("Set slider value on view with class: FormsSeekBar");
+			app.SetSliderValue(x => x.Class("FormsSeekBar").Index(1), 209);
+			app.Screenshot("Set slider value on view with class: FormsSeekBar");
+			app.SetSliderValue(x => x.Class("FormsSeekBar").Index(2), 50);
+			app.Screenshot("Set slider value on view with class: FormsSeekBar");
+			app.Tap(x => x.Marked("OK"));
+			app.Screenshot("Tapped on view with class: ImageButton marked: OK");
+			app.Tap(x => x.Text("Fahrenheit (°F)"));
+			app.Screenshot("Tapped on view with class: FormsTextView");
+			app.SwipeRightToLeft();
+			app.Screenshot("Swiped left");
 		}
 	}
 }

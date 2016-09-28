@@ -87,13 +87,13 @@
 		<Label Text="{Binding VoltageIn, StringFormat='Volatge in: {0:F2} V'}"
 			x:Name="VoltageInLabel"
 			HorizontalOptions="StartAndExpand"
-			AutomationId="VoltageInSlider"
+			AutomationId="VoltageInLabel"
 			Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding VoltageIn, Mode=TwoWay}"
 					Minimum="{Binding MinVoltageIn}"
 					Maximum="{Binding MaxVoltageIn}"
-					x:Name="VoltageInSlider"
+					AutomationId="VoltageInSlider"
 				Grid.Row="4" Grid.Column="0" />
 		<Stepper Value="{Binding VoltageIn}"
 					Minimum="{Binding MinVoltageIn}"
@@ -106,13 +106,13 @@
 		<Label Text="{Binding VoltageOut, StringFormat='Volatge out: {0:F2} V'}"
 			x:Name="VoltageOutLabel"
 			HorizontalOptions="StartAndExpand"
-			AutomationId="VoltageOutSlider"
+			AutomationId="VoltageOutLabel"
 			Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding VoltageOut}"
 					Minimum="{Binding MinVoltageOut}"
 					Maximum="{Binding MaxVoltageOut}"
-			x:Name="VoltageOutSlider"
+			AutomationId="VoltageOutSlider"
 			Grid.Row="6" Grid.Column="0" />
 		<Stepper Value="{Binding VoltageOut}"
 					Minimum="{Binding MinVoltageOut}"
@@ -123,11 +123,13 @@
 
 		<Label Text="{Binding CurrentDraw, StringFormat='Current out: {0:F3} A'}"
 			HorizontalOptions="StartAndExpand"
+			AutomationId="CurrentDrawLabel"
 			Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding CurrentDraw}"
 					Minimum="{Binding MinCurrentDraw}"
 					Maximum="{Binding MaxCurrentDraw}"
+			AutomationId="CurrentDrawSlider"
 			Grid.Row="8" Grid.Column="0" />
 		<Stepper Value="{Binding CurrentDraw}"
 					Minimum="{Binding MinCurrentDraw}"

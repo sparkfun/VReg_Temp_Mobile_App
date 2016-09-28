@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace VoltageRegulatorTemperature.iOS
 {
@@ -15,9 +16,19 @@ namespace VoltageRegulatorTemperature.iOS
 			global::Xamarin.Forms.Forms.Init();
 
 			// Code for starting up the Xamarin Test Cloud Agent
-#if ENABLE_TEST_CLOUD
+			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
-#endif
+			#endif
+
+			// Added in attempt to make AutomationIDs work
+			Forms.ViewInitialized += (object sender, ViewInitializedEventArgs e) =>
+			{
+				// http://developer.xamarin.com/recipes/testcloud/set-accessibilityidentifier-ios/
+				if (null != e.View.AutomationId)
+				{
+					e.NativeView.AccessibilityIdentifier = e.View.AutomationId;
+				}
+			};
 
 			LoadApplication(new App());
 
