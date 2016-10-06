@@ -17,7 +17,7 @@
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	
-	<ScrollView Padding="5,20,5,5">
+	<ScrollView Padding="5,20,5,5" AutomationId="CalcScrollView">
 		<Grid>
 
 		<!-- Grid Setup Section -->

@@ -14,31 +14,35 @@ public class AndroidTests {
 	}
 
 	[Test]
-	public void SetRealisticValues()
+	public void BasicFahrenheitSetup()
 	{
- 		app.SetSliderValue(x => x.Class("FormsSeekBar").Index(0), 250);
-		app.Screenshot("Set slider value on view with class: FormsSeekBar");
-		app.SetSliderValue(x => x.Class("FormsSeekBar").Index(1), 210);
-		app.Screenshot("Set slider value on view with class: FormsSeekBar");
-		app.SetSliderValue(x => x.Class("FormsSeekBar").Index(2), 50);
-		app.Screenshot("Set slider value on view with class: FormsSeekBar");
-	}
+		// Let something load before proceeding
+		app.WaitForElement(x => x.Marked("JunctionTemperatureLabel"));
+		app.Screenshot("Initial launch");
 
-	[Test]
-	public void SetRealisticValuesInFahrenheit()
-	{
 		app.SetSliderValue(x => x.Class("FormsSeekBar").Index(0), 250);
-		app.Screenshot("Set slider value on view with class: FormsSeekBar");
-		app.SetSliderValue(x => x.Class("FormsSeekBar").Index(1), 210);
-		app.Screenshot("Set slider value on view with class: FormsSeekBar");
+		app.SetSliderValue(x => x.Class("FormsSeekBar").Index(1), 208);
+		app.ScrollDown();	// Might be necessary on small screens
 		app.SetSliderValue(x => x.Class("FormsSeekBar").Index(2), 50);
-		app.Screenshot("Set slider value on view with class: FormsSeekBar");
+		app.Screenshot("Sliders set for 5V from 12V at 0.5A");
+
+		app.ScrollUp();
+		app.SetOrientationLandscape();
+		app.Screenshot("Setup in landscape");
+
+		app.SetOrientationPortrait();
 		app.Tap(x => x.Marked("OK"));
-		app.Screenshot("Tapped on view with class: ImageButton marked: OK");
+		app.Screenshot("Opened settings");
+
 		app.Tap(x => x.Text("Fahrenheit (°F)"));
 		app.Screenshot("Tapped on view with class: FormsTextView");
+
 		app.SwipeRightToLeft();
 		app.Screenshot("Swiped left");
+
+		app.WaitForElement(x => x.Marked("JunctionTemperatureLabel"));
+		var temperatureF = app.Query(x => x.Marked("JunctionTemperatureLabel"));
+		Assert.IsTrue(temperatureF[0].Text.Equals("JUNCTION TEMP: 222.1 ˚F"));
 	}
 
 
