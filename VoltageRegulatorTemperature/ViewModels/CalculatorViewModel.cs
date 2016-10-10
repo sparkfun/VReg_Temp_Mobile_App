@@ -27,7 +27,7 @@ namespace VoltageRegulatorTemperature.ViewModels
 
 			});
 
-			// TODO: Test out default values at start. Will restore them later.
+			// Use default values at start. Will restore saved values later.
 			ThermalResistance = 23.0;
 			DisplayedUnits = Units.Celsius;
 			AmbientTemp = 25.0;
@@ -176,7 +176,8 @@ namespace VoltageRegulatorTemperature.ViewModels
 			{
 				if (SetProperty(ref maxJunctionTemp, value))
 				{
-					CalculateTemperatureRise();
+					// If this property changes, trigger check of junction being too hot
+					OnPropertyChanged("TempC");
 				}
 			}
 		}

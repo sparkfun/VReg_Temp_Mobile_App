@@ -47,7 +47,7 @@
 			AutomationId="PowerDissipatedLabel"
 			Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
 
-		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}"
+		<Label Text="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C', Mode=TwoWay}"
 				HorizontalOptions="Center"
 				FontAttributes="Bold"
 				AutomationId="JunctionTemperatureLabel"
@@ -59,16 +59,15 @@
 				<DataTrigger TargetType="Label" Value="true"
 						Binding="{Binding DisplayedUnits,
 								Converter={StaticResource isCelsius}">
-					<Setter Property="Text" Value="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C'}" />
+					<Setter Property="Text" Value="{Binding TempC, StringFormat='JUNCTION TEMP: {0:F1} ˚C', Mode=TwoWay}" />
 				</DataTrigger>
 				<DataTrigger TargetType="Label" Value="false"
 						Binding="{Binding DisplayedUnits,
 								Converter={StaticResource isCelsius}">
-					<Setter Property="Text" Value="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F'}" />
+					<Setter Property="Text" Value="{Binding TempF, StringFormat='JUNCTION TEMP: {0:F1} ˚F', Mode=TwoWay}" />
 				</DataTrigger>
 					
 				<!-- Turn junction temperature label red if it's too hot -->
-				<!-- TODO: This doesn't catch a change in max junction temperature -->
 				<DataTrigger TargetType="Label" Value="true"
 						Binding="{Binding TempC,
 								Converter={StaticResource thresholdConverter}">
@@ -85,10 +84,9 @@
 		<!-- Input Section -->
 
 		<Label Text="{Binding VoltageIn, StringFormat='Volatge in: {0:F2} V'}"
-			x:Name="VoltageInLabel"
-			HorizontalOptions="StartAndExpand"
-			AutomationId="VoltageInLabel"
-			Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
+					HorizontalOptions="StartAndExpand"
+					AutomationId="VoltageInLabel"
+				Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding VoltageIn, Mode=TwoWay}"
 					Minimum="{Binding MinVoltageIn}"
@@ -104,22 +102,20 @@
 		<!-- Output Section -->
 
 		<Label Text="{Binding VoltageOut, StringFormat='Volatge out: {0:F2} V'}"
-			x:Name="VoltageOutLabel"
-			HorizontalOptions="StartAndExpand"
-			AutomationId="VoltageOutLabel"
-			Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" />
+					HorizontalOptions="StartAndExpand"
+					AutomationId="VoltageOutLabel"
+				Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" />
 
 		<Slider Value="{Binding VoltageOut}"
 					Minimum="{Binding MinVoltageOut}"
 					Maximum="{Binding MaxVoltageOut}"
-			AutomationId="VoltageOutSlider"
-			Grid.Row="6" Grid.Column="0" />
+					AutomationId="VoltageOutSlider"
+				Grid.Row="6" Grid.Column="0" />
 		<Stepper Value="{Binding VoltageOut}"
 					Minimum="{Binding MinVoltageOut}"
 					Maximum="{Binding MaxVoltageOut}"
 					Increment="0.01"
-			x:Name="VoltageOutStepper"
-			Grid.Row="6" Grid.Column="1" />
+				Grid.Row="6" Grid.Column="1" />
 
 		<Label Text="{Binding CurrentDraw, StringFormat='Current out: {0:F3} A'}"
 			HorizontalOptions="StartAndExpand"

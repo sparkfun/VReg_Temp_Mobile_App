@@ -17,7 +17,7 @@ namespace VoltageRegulatorTemperature.Converters
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			double number;
-			// TODO: This breaks on empty string!
+
 			if (Double.TryParse((string)value, out number))
 			{
 				return (number - 32) * 5.0 / 9.0;

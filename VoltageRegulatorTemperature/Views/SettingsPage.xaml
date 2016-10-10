@@ -28,7 +28,7 @@
 		<ScrollView>
 			<StackLayout VerticalOptions="FillAndExpand" Padding="10">
 				<Label Text="Thermal Resistance (˚C/W)" />
-				<renderers:DoneEntry Text="{Binding ThermalResistance}" x:Name="resistanceEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding ThermalResistance}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
@@ -79,8 +79,7 @@
 				</Label>
 
 
-				<renderers:DoneEntry Text="{Binding AmbientTemp}"
-						x:Name="ambientTempEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding AmbientTemp}" Keyboard="Numeric">
 					<renderers:DoneEntry.Triggers>
 						<DataTrigger TargetType="renderers:DoneEntry" Value="True"
 								Binding="{Binding Source={x:Reference  fahrenheitRadio}, Path=IsChecked}">
@@ -108,7 +107,7 @@
 					</Label.Triggers>
 				</Label>
 
-				<renderers:DoneEntry Text="{Binding MaxJunctionTemp}" x:Name="maxJunctionTempEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding MaxJunctionTemp}" Keyboard="Numeric">
 					<renderers:DoneEntry.Triggers>
 						<DataTrigger TargetType="renderers:DoneEntry" Value="True"
 								Binding="{Binding Source={x:Reference  fahrenheitRadio}, Path=IsChecked}">
@@ -131,37 +130,37 @@
 				<Label Text="Slider limit settings" FontSize="Small" FontAttributes="Bold" />
 				<BoxView Color="Black" HeightRequest="2" />
 				<Label Text="Minumum Voltage In" />
-				<renderers:DoneEntry Text="{Binding MinVoltageIn}" x:Name="minVoltageInEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding MinVoltageIn}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
 				</renderers:DoneEntry>
 				<Label Text="Maximum Voltage In" />
-				<renderers:DoneEntry Text="{Binding MaxVoltageIn}" x:Name="maxVoltageInEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding MaxVoltageIn}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
 				</renderers:DoneEntry>
 				<Label Text="Minumum Voltage Out" />
-				<renderers:DoneEntry Text="{Binding MinVoltageOut}" x:Name="minVoltageOutEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding MinVoltageOut}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
 				</renderers:DoneEntry>
 				<Label Text="Maximum Voltage Out" />
-				<renderers:DoneEntry Text="{Binding MaxVoltageOut}" x:Name="maxVoltageOutEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding MaxVoltageOut}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
 				</renderers:DoneEntry>
 				<Label Text="Minimum Current (A)" />
-				<renderers:DoneEntry Text="{Binding MinCurrentDraw}" x:Name="minCurrentEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding MinCurrentDraw}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
 				</renderers:DoneEntry>
 				<Label Text="Maximum Current (A)" />
-				<renderers:DoneEntry Text="{Binding MaxCurrentDraw}" x:Name="maxCurrentEntry" Keyboard="Numeric">
+				<renderers:DoneEntry Text="{Binding MaxCurrentDraw}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
