@@ -36,11 +36,13 @@
       "idiom": "iphone"
     },
     {
+      "filename": "Icon-120.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "Vreg Icons Android hdpi 2.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
@@ -56,21 +58,25 @@
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-40.png",
       "size": "40x40",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-40@2x.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-Small-50.png",
       "size": "50x50",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-Small-50@2x.png",
       "size": "50x50",
       "scale": "2x",
       "idiom": "ipad"
@@ -81,16 +87,19 @@
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-72.png",
       "size": "72x72",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-72@2x.png",
       "size": "72x72",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-76.png",
       "size": "76x76",
       "scale": "1x",
       "idiom": "ipad"
@@ -155,16 +164,19 @@
       "idiom": "watch"
     },
     {
+      "filename": "Icon-16.png",
       "size": "16x16",
       "scale": "1x",
       "idiom": "mac"
     },
     {
+      "filename": "Icon-32.png",
       "size": "16x16",
       "scale": "2x",
       "idiom": "mac"
     },
     {
+      "filename": "Icon-32.png",
       "size": "32x32",
       "scale": "1x",
       "idiom": "mac"
@@ -190,16 +202,19 @@
       "idiom": "mac"
     },
     {
+      "filename": "iTunesArtwork.png",
       "size": "256x256",
       "scale": "2x",
       "idiom": "mac"
     },
     {
+      "filename": "iTunesArtwork.png",
       "size": "512x512",
       "scale": "1x",
       "idiom": "mac"
     },
     {
+      "filename": "iTunesArtwork@2x.png",
       "size": "512x512",
       "scale": "2x",
       "idiom": "mac"
