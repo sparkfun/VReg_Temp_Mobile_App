@@ -10,7 +10,9 @@
 		x:Name="settingsPage"
 		BindingContext="{Binding Source={x:Static Application.Current}, Path=CalculatorViewModel}">
 	<ContentPage.Padding>
-		<OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+		<OnPlatform x:TypeArguments="Thickness"
+				iOS="0, 20, 0, 0"
+                Android="0, 20, 0, 0" />
 	</ContentPage.Padding>
 	<ContentPage.Resources>
 		<ResourceDictionary>

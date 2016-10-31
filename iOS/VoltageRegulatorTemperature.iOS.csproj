@@ -47,6 +47,7 @@
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
     <BuildIpa>true</BuildIpa>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
@@ -134,6 +135,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\iTunesArtwork%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-32.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-167.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -157,6 +160,11 @@
     <BundleResource Include="Resources\linear_model.png" />
     <BundleResource Include="Resources\linear_model%402x.png" />
     <BundleResource Include="Resources\linear_model%403x.png" />
+    <BundleResource Include="Resources\Icon-120.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
