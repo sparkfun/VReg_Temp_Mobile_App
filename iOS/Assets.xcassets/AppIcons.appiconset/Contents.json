@@ -36,77 +36,79 @@
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-120.png",
+      "filename": "Vreg_120.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "Vreg Icons Android hdpi 2.png",
+      "filename": "Vreg_180.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "Vreg_29.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "Vreg_58.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-40.png",
+      "filename": "Vreg_40.png",
       "size": "40x40",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-40@2x.png",
+      "filename": "Vreg_80.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-Small-50.png",
+      "filename": "Vreg_50.png",
       "size": "50x50",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-Small-50@2x.png",
+      "filename": "Vreg_100.png",
       "size": "50x50",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-167.png",
+      "filename": "Vreg_167.png",
       "size": "83.5x83.5",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-72.png",
+      "filename": "Vreg_72.png",
       "size": "72x72",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-72@2x.png",
+      "filename": "Vreg_144.png",
       "size": "72x72",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-76.png",
+      "filename": "Vreg_76.png",
       "size": "76x76",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-152.png",
+      "filename": "Vreg_152.png",
       "size": "76x76",
       "scale": "2x",
       "idiom": "ipad"
@@ -166,57 +168,61 @@
       "idiom": "watch"
     },
     {
-      "filename": "Icon-16.png",
+      "filename": "Vreg_16.png",
       "size": "16x16",
       "scale": "1x",
       "idiom": "mac"
     },
     {
-      "filename": "Icon-32.png",
+      "filename": "Vreg_32.png",
       "size": "16x16",
       "scale": "2x",
       "idiom": "mac"
     },
     {
-      "filename": "Icon-32.png",
+      "filename": "Vreg_32.png",
       "size": "32x32",
       "scale": "1x",
       "idiom": "mac"
     },
     {
+      "filename": "vreg icons_64.png",
       "size": "32x32",
       "scale": "2x",
       "idiom": "mac"
     },
     {
+      "filename": "vreg icons_128.png",
       "size": "128x128",
       "scale": "1x",
       "idiom": "mac"
     },
     {
+      "filename": "Vreg_256.png",
       "size": "128x128",
       "scale": "2x",
       "idiom": "mac"
     },
     {
+      "filename": "Vreg_256.png",
       "size": "256x256",
       "scale": "1x",
       "idiom": "mac"
     },
     {
-      "filename": "iTunesArtwork.png",
+      "filename": "Vreg_512.png",
       "size": "256x256",
       "scale": "2x",
       "idiom": "mac"
     },
     {
-      "filename": "iTunesArtwork.png",
+      "filename": "Vreg_512.png",
       "size": "512x512",
       "scale": "1x",
       "idiom": "mac"
     },
     {
-      "filename": "iTunesArtwork@2x.png",
+      "filename": "Vreg_1024.png",
       "size": "512x512",
       "scale": "2x",
       "idiom": "mac"
