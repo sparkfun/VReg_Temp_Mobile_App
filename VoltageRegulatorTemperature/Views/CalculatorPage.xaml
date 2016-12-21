@@ -83,7 +83,7 @@
 
 		<!-- Input Section -->
 
-		<Label Text="{Binding VoltageIn, StringFormat='Volatge in: {0:F2} V'}"
+		<Label Text="{Binding VoltageIn, StringFormat='Voltage in: {0:F2} V'}"
 					HorizontalOptions="StartAndExpand"
 					AutomationId="VoltageInLabel"
 				Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
@@ -101,7 +101,7 @@
 
 		<!-- Output Section -->
 
-		<Label Text="{Binding VoltageOut, StringFormat='Volatge out: {0:F2} V'}"
+		<Label Text="{Binding VoltageOut, StringFormat='Voltage out: {0:F2} V'}"
 					HorizontalOptions="StartAndExpand"
 					AutomationId="VoltageOutLabel"
 				Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" />
