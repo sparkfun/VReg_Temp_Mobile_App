@@ -131,7 +131,7 @@
 				<!-- Slider configuration settings -->
 				<Label Text="Slider limit settings" FontSize="Small" FontAttributes="Bold" />
 				<BoxView Color="Black" HeightRequest="2" />
-				<Label Text="Minumum Voltage In" />
+				<Label Text="Minimum Voltage In" />
 				<renderers:DoneEntry Text="{Binding MinVoltageIn}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
@@ -143,7 +143,7 @@
 						<toolkit:NumericValidationBehavior />
 					</Entry.Behaviors>
 				</renderers:DoneEntry>
-				<Label Text="Minumum Voltage Out" />
+				<Label Text="Minimum Voltage Out" />
 				<renderers:DoneEntry Text="{Binding MinVoltageOut}" Keyboard="Numeric">
 					<Entry.Behaviors>
 						<toolkit:NumericValidationBehavior />
